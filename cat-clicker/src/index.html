@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="app">
   <head>
     <meta charset="utf-8">
     <title>FountainJS</title>
@@ -19,8 +19,20 @@
   </head>
 
 
-  <body ng-app="app">
-    <app>Loading...</app>
+  <body ng-controller="MyController" layout="column">
+
+  <md-toolbar>
+    <h1>Cat clicker</h1>
+  </md-toolbar>
+  <div layout="row" flex>   
+      <md-sidenav md-is-locked-open="true" class="lightblue">
+        <span>sidenav</span>
+      </md-sidenav>
+
+      <md-content class="lightgreen" flex>
+          content
+      </md-content>
+  </div>
   </body>
 
   <!-- build:js({.tmp,src}) scripts/vendor.js -->

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Angular Material template</title>
+
+  <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.css">
+
+
+</head>
+<body ng-app="MyApp" layout="column">
+
+<md-toolbar>
+  <h1>Angular material template</h1>
+</md-toolbar>
+<div class="container" layout="row" flex>
+  <md-sidenav md-is-locked-open="true" style="background-color: lightblue">
+    sidenav
+  </md-sidenav>
+
+  <md-content id="content" style="background-color: lightgreen" flex>
+      Content
+  </md-content>
+</div>
+
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-material/angular-material.js"></script>
+
+<script type="text/javascript">
+  angular.module('MyApp',['ngMaterial'])
+    .run(function(){
+      console.log('my app is ready');
+    });
+</script>
+
+</body>
+</html>

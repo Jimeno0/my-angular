@@ -1,8 +1,7 @@
-angular
-  .module('app')
-  .component('app', {
-    templateUrl: 'app/hello.html',
-    controller: function () {
-      this.hello = 'Hello World!';
-    }
+'use strict';
+
+angular.module('app')
+  .controller('MyController', function(){
+    
+    
   });

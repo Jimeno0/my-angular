@@ -25,18 +25,60 @@
     <h1>Cat clicker</h1>
   </md-toolbar>
   <div layout="row" flex>   
-      <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
-        <md-list>
-          <md-list-item ng-repeat="cat in ctrl.cats">
-            <md-button ng-click = "ctrl.select(cat)"flex>{{cat.name}}</md-button>
-          </md-list-item>
-        </md-list>
+      <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp" layout="column">
+
+        <md-content layout-padding>
+          <md-list>
+            <md-list-item ng-repeat="cat in ctrl.cats">
+              <md-button ng-click = "ctrl.select(cat)" layout-fill >
+                  <span >{{cat.name}}</span>
+              </md-button>
+            </md-list-item>
+          </md-list>
+
+          <div>
+            <md-button class="md-raised" ng-click="ctrl.toggleForm()" layout-fill>
+              <span>Grow the Cat family</span>
+            </md-button>   
+          </div>
+          
+
+          <form name="catForm" novalidate ng-hide="ctrl.hideForm">
+            <md-input-container class="md-block">
+              <label>Cat Name</label>
+              <input type="text" ng-model="ctrl.newCat.name" name="name" required="">
+              <div ng-messages="catForm.name.$error">
+                <div ng-message="required">Give this poor cat a name!</div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Image url</label>
+              <input type="text" ng-model="ctrl.newCat.src"  name="src" required="">
+              <div ng-messages="catForm.url.$error">
+                <div ng-message="required">Set an image Url </div>
+              </div>
+            </md-input-container>
+            <md-input-container class="md-block">
+              <label>Initial clicks</label>
+              <input type="number" ng-model="ctrl.newCat.count">
+            </md-input-container>
+            <div>
+              <md-button class="md-raised" ng-click="ctrl.clear()">Close</md-button>
+              <md-button class="md-raised" type="submit" ng-click="ctrl.save(ctrl.newCat)">Save</md-button>
+            </div>
+          </form>          
+        </md-content>
       </md-sidenav>
 
-      <md-content flex layout="column" layout-align = "center center">
+      <md-content flex layout="column" layout-align = "center center" layout-padding>
         <h2>{{ctrl.selected.name}}</h2>
-        <span>Cat clicked : {{ctrl.selected.count}} times</span>
-        <img ng-src="{{ctrl.selected.src}}" class="avatar" ng-click = "ctrl.catClick(ctrl.selected)">
+        <span>
+          {{ctrl.selected.count === 0 ? 'Start clicking ' + ctrl.selected.name + ' the cat!' : ctrl.selected.name + ' clicked : ' + ctrl.selected.count + ' times' }}
+        </span>
+        <md-button ng-click = "ctrl.catClick(ctrl.selected)" aria-label="Cat Picture" layout="center center">
+          <img ng-src="{{ctrl.selected.src}}" class="avatar" alt="{{ctrl.selected.name}}">
+        </md-button>
+        <!-- <img ng-src="{{ctrl.selected.src}}" class="avatar" ng-click = "ctrl.catClick(ctrl.selected)"> -->
       </md-content>
   </div>
   </body>

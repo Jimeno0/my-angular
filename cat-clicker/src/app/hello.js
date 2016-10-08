@@ -5,9 +5,7 @@ angular.module('app')
     var self = this;
     self.cats = [];
     self.selected = null;
-       
-    
-
+    self.hideForm = true;
     self.cats = [
       { id: 1,
         name: 'Coco',
@@ -39,6 +37,27 @@ angular.module('app')
 
     self.catClick = function (cat) {
       cat.count ++;
+    };
+
+    self.save = function(newCat) {
+
+      if (newCat.count === null || !newCat.count) {
+        newCat.count = 0;
+        self.cats.push(newCat);
+      }
+      else  {
+        self.cats.push(newCat); 
+      }
+      self.clear();
+    };
+
+    self.clear = function () {
+      self.newCat = {};
+    };
+
+    self.toggleForm = function(){
+      self.hideForm = self.hideForm === false ?
+      true : false;
     };
 
   });

@@ -49,10 +49,12 @@ angular.module('app')
         self.cats.push(newCat); 
       }
       self.clear();
+      
     };
 
     self.clear = function () {
       self.newCat = {};
+      self.toggleForm();
     };
 
     self.toggleForm = function(){

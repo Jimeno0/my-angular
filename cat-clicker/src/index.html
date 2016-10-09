@@ -2,10 +2,10 @@
 <html ng-app="app" ng-cloak>
   <head>
     <meta charset="utf-8">
-    <title>FountainJS</title>
-    <meta name="description" content="">
+    <title>Cat clicker</title>
+    <meta name="description" content="Dummy app showing off how to manage 2 way data binding with angular and angular material">
     <meta name="viewport" content="width=device-width">
-    <link rel="icon" type="image/png" href="http://fountainjs.io/assets/imgs/fountain.png" />
+    <link rel="icon" type="image/png" href="http://dumpfm.s3.amazonaws.com/images/20130227/1362024965105-dumpfm-99centbrains-i_cw_6.png" />
   
     <!-- build:css({.tmp,src}) styles/vendor.css -->
     <!-- bower:css -->
@@ -30,7 +30,7 @@
         <md-content layout-padding>
           <md-list>
             <md-list-item ng-repeat="cat in ctrl.cats">
-              <md-button ng-click = "ctrl.select(cat)" layout-fill >
+              <md-button ng-click = "ctrl.select(cat)" layout-fill>
                   <span >{{cat.name}}</span>
               </md-button>
             </md-list-item>
@@ -70,7 +70,7 @@
         </md-content>
       </md-sidenav>
 
-      <md-content flex layout="column" layout-align = "center center" layout-padding>
+      <md-content layout="column" layout-align = "center center" layout-padding>
         <h2>{{ctrl.selected.name}}</h2>
         <span>
           {{ctrl.selected.count === 0 ? 'Start clicking ' + ctrl.selected.name + ' the cat!' : ctrl.selected.name + ' clicked : ' + ctrl.selected.count + ' times' }}

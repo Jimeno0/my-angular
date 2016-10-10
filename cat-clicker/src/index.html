@@ -21,11 +21,14 @@
 
   <body ng-controller="MyController as ctrl" layout="column">
 
-  <md-toolbar class="md-whiteframe-6dp">
+  <md-toolbar class="md-whiteframe-6dp" layout="row">
+    <md-button ng-click="ctrl.toggleSideNav()" aria-label="Toggle SideNav button" hide-gt-sm>
+      <md-icon md-svg-src="icons/menu.svg" aria-label="menu"></md-icon>
+    </md-button>
     <h1>Cat clicker</h1>
   </md-toolbar>
   <div layout="row" flex>   
-      <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp" layout="column">
+      <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp" layout="column" md-component-id="catsSideNav">
 
         <md-content layout-padding>
           <md-list>
@@ -38,6 +41,7 @@
 
           <div>
             <md-button class="md-raised" ng-click="ctrl.toggleForm()" layout-fill>
+              <md-icon md-svg-src="icons/add.svg"></md-icon>
               <span>Grow the Cat family</span>
             </md-button>   
           </div>
@@ -62,7 +66,7 @@
               <label>Initial clicks</label>
               <input type="number" ng-model="ctrl.newCat.count">
             </md-input-container>
-            <div>
+            <div flex layout="row">
               <md-button class="md-raised" ng-click="ctrl.clear()">Close</md-button>
               <md-button class="md-raised" type="submit" ng-click="ctrl.save(ctrl.newCat)">Save</md-button>
             </div>

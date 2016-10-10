@@ -1,31 +1,32 @@
 'use strict';
 
 angular.module('app')
-  .controller('MyController', function(){
+  .controller('MyController', function($mdSidenav){
     var self = this;
     self.cats = [];
     self.selected = null;
     self.hideForm = true;
+
     self.cats = [
       { id: 1,
         name: 'Coco',
-        src: '/images/coco.jpg',
+        src: 'images/coco.jpg',
         count: 0},
       { id: 2,
         name: 'Sombra',
-        src: '/images/sombra.jpg',
+        src: 'images/sombra.jpg',
         count: 0},
       { id: 3,
         name: 'Frodo',
-        src: '/images/frodo.jpg',
+        src: 'images/frodo.jpg',
         count: 0},
       { id: 4,
         name: 'Scar',
-        src: '/images/scar.jpg',
+        src: 'images/scar.jpg',
         count: 0},
       { id: 5,
         name: 'Felix',
-        src: '/images/felix.jpg',
+        src: 'images/felix.jpg',
         count: 0}
     ];
 
@@ -60,6 +61,10 @@ angular.module('app')
     self.toggleForm = function(){
       self.hideForm = self.hideForm === false ?
       true : false;
+    };
+
+    self.toggleSideNav = function () {
+      $mdSidenav('catsSideNav').toggle();
     };
 
   });

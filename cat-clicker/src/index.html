@@ -75,6 +75,9 @@
       </md-sidenav>
 
       <md-content layout="column" layout-align = "center center" layout-padding>
+        <md-button class="md-fab" aria-label="add a cat" ng-click="ctrl.toggleForm()">
+          <md-icon md-svg-src="icons/add.svg"></md-icon>
+        </md-button>
         <h2>{{ctrl.selected.name}}</h2>
         <span>
           {{ctrl.selected.count === 0 ? 'Start clicking ' + ctrl.selected.name + ' the cat!' : ctrl.selected.name + ' clicked : ' + ctrl.selected.count + ' times' }}

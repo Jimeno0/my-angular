@@ -27,6 +27,40 @@
     </md-button>
     <h1>Cat clicker</h1>
   </md-toolbar>
+
+
+  <div style="visibility: hidden">
+    <div class="md-dialog-container" id="myDialog">
+      <md-dialog layout-padding>
+        <form name="catForm" novalidate >
+          <md-input-container class="md-block">
+            <label>Cat Name</label>
+            <input type="text" ng-model="ctrl.newCat.name" name="name" required="">
+            <div ng-messages="catForm.name.$error">
+              <div ng-message="required">Give this poor cat a name!</div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label>Image url</label>
+            <input type="text" ng-model="ctrl.newCat.src"  name="src" required="">
+            <div ng-messages="catForm.url.$error">
+              <div ng-message="required">Set an image Url </div>
+            </div>
+          </md-input-container>
+          <md-input-container class="md-block">
+            <label>Initial clicks</label>
+            <input type="number" ng-model="ctrl.newCat.count">
+          </md-input-container>
+          <div flex layout="row">
+            <md-button class="md-raised" ng-click="ctrl.clear()">Close</md-button>
+            <md-button class="md-raised" type="submit" ng-click="ctrl.save(ctrl.newCat)">Save</md-button>
+          </div>
+        </form>
+      </md-dialog>
+    </div>
+  </div>
+
+
   <div layout="row" flex>   
       <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-4dp" layout="column" md-component-id="catsSideNav">
 
@@ -38,44 +72,12 @@
               </md-button>
             </md-list-item>
           </md-list>
-
-          <div>
-            <md-button class="md-raised" ng-click="ctrl.toggleForm()" layout-fill>
-              <md-icon md-svg-src="icons/add.svg"></md-icon>
-              <span>Grow the Cat family</span>
-            </md-button>   
-          </div>
           
-
-          <form name="catForm" novalidate ng-hide="ctrl.hideForm">
-            <md-input-container class="md-block">
-              <label>Cat Name</label>
-              <input type="text" ng-model="ctrl.newCat.name" name="name" required="">
-              <div ng-messages="catForm.name.$error">
-                <div ng-message="required">Give this poor cat a name!</div>
-              </div>
-            </md-input-container>
-            <md-input-container class="md-block">
-              <label>Image url</label>
-              <input type="text" ng-model="ctrl.newCat.src"  name="src" required="">
-              <div ng-messages="catForm.url.$error">
-                <div ng-message="required">Set an image Url </div>
-              </div>
-            </md-input-container>
-            <md-input-container class="md-block">
-              <label>Initial clicks</label>
-              <input type="number" ng-model="ctrl.newCat.count">
-            </md-input-container>
-            <div flex layout="row">
-              <md-button class="md-raised" ng-click="ctrl.clear()">Close</md-button>
-              <md-button class="md-raised" type="submit" ng-click="ctrl.save(ctrl.newCat)">Save</md-button>
-            </div>
-          </form>          
         </md-content>
       </md-sidenav>
 
       <md-content layout="column" layout-align = "center center" layout-padding>
-        <md-button class="md-fab" aria-label="add a cat" ng-click="ctrl.toggleForm()">
+        <md-button class="md-fab" aria-label="add a cat" ng-click="ctrl.showPrerenderedDialog()" id="addBtn">
           <md-icon md-svg-src="icons/add.svg"></md-icon>
         </md-button>
         <h2>{{ctrl.selected.name}}</h2>

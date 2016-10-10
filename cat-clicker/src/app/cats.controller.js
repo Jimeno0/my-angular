@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-  .controller('MyController', function($mdSidenav){
+  .controller('MyController', function($mdSidenav, $mdDialog){
     var self = this;
     self.cats = [];
     self.selected = null;
@@ -55,16 +55,21 @@ angular.module('app')
 
     self.clear = function () {
       self.newCat = {};
-      self.toggleForm();
-    };
-
-    self.toggleForm = function(){
-      self.hideForm = self.hideForm === false ?
-      true : false;
+      $mdDialog.hide();
     };
 
     self.toggleSideNav = function () {
       $mdSidenav('catsSideNav').toggle();
     };
+
+    self.showPrerenderedDialog = function(ev) {
+    $mdDialog.show({
+      // controller: DialogController,
+      contentElement: '#myDialog',
+      parent: angular.element(document.body),
+      targetEvent: ev,
+      clickOutsideToClose: true
+    });
+  };
 
   });

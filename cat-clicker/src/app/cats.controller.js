@@ -13,6 +13,8 @@
       self.selected = null;
       self.showPrerenderedDialog = showPrerenderedDialog;
       self.toggleSideNav = toggleSideNav;
+      self.isEditing = false;
+      self.setEditing = setEditing;
       
 
       catsData.getCats()
@@ -43,17 +45,31 @@
         showToast();
       }
 
+      function setEditing(){
+        self.isEditing = true;
+      }
+
       function save (newCat) {
-        newCat.id = asignCatId(self.cats);
+
         if (newCat.count === null || !newCat.count) {
-          newCat.count = 0;
-          self.cats.push(newCat);
+            newCat.count = 0;
         }
-        else  {
-          self.cats.push(newCat); 
+
+
+        if (self.isEditing) {
+          self.selected.name = newCat.name;
+          self.selected.src = newCat.src;
+          self.selected.count = newCat.count;
+
+        } else {
+          newCat.id = asignCatId(self.cats);
+          self.cats.push(newCat);
         }
 
         self.clear();
+        self.isEditing = false;
+        
+
 
         function asignCatId(catsArray){
           return asignCatIdAux(getSortedIds(catsArray), 0, 0);

@@ -69,10 +69,10 @@
             <md-list-item ng-repeat="cat in ctrl.cats" ng-click = "ctrl.select(cat)">
               <div flex layout-fill layout="row">
                 <div>
-                  <span >{{cat.name}}, id: {{cat.id}}</span>  
+                  <span >{{cat.name}}</span>  
                 </div>
                 <div flex layout="row" layout-align="end">
-                  <md-button aria-label="edit cat" md-no-ink="true" class="icon-button-width">
+                  <md-button aria-label="edit cat" md-no-ink="true" class="icon-button-width" ng-click="ctrl.select(cat);ctrl.showPrerenderedDialog();ctrl.setEditing();">
                     <md-icon md-svg-src="icons/edit.svg"></md-icon>
                   </md-button>
                   <md-button aria-label="delete cat" md-no-ink="true" class="icon-button-width" ng-click="ctrl.deleteCat(cat.id)">

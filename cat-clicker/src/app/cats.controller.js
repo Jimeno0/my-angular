@@ -1,75 +1,110 @@
+(function(){
 'use strict';
-
-angular.module('app')
-  .controller('MyController', function($mdSidenav, $mdDialog){
-    var self = this;
-    self.cats = [];
-    self.selected = null;
-    self.hideForm = true;
-
-    self.cats = [
-      { id: 1,
-        name: 'Coco',
-        src: 'images/coco.jpg',
-        count: 0},
-      { id: 2,
-        name: 'Sombra',
-        src: 'images/sombra.jpg',
-        count: 0},
-      { id: 3,
-        name: 'Frodo',
-        src: 'images/frodo.jpg',
-        count: 0},
-      { id: 4,
-        name: 'Scar',
-        src: 'images/scar.jpg',
-        count: 0},
-      { id: 5,
-        name: 'Felix',
-        src: 'images/felix.jpg',
-        count: 0}
-    ];
-
-    self.selected = self.cats[0];
-
-    self.select = function (cat) {
-      self.selected = cat;
-    };
-
-    self.catClick = function (cat) {
-      cat.count ++;
-    };
-
-    self.save = function(newCat) {
-
-      if (newCat.count === null || !newCat.count) {
-        newCat.count = 0;
-        self.cats.push(newCat);
-      }
-      else  {
-        self.cats.push(newCat); 
-      }
-      self.clear();
+  angular.module('app')
+    .controller('MyController', function($mdSidenav, $mdDialog, $mdToast, catsData){
+      var self = this;
+      self.cats = [];
+      self.catClick = catClick;
+      self.clear = clear;
+      self.deleteCat = deleteCat;
+      self.hideForm = true;
+      self.save = save;
+      self.select = select;
+      self.selected = null;
+      self.showPrerenderedDialog = showPrerenderedDialog;
+      self.toggleSideNav = toggleSideNav;
       
-    };
 
-    self.clear = function () {
-      self.newCat = {};
-      $mdDialog.hide();
-    };
+      catsData.getCats()
+        .then(function(response){
+        self.cats = response;
+        self.selected = self.cats[0];
+      })
+        .catch(function(response){
+        console.log("errror" + response);
+      });
 
-    self.toggleSideNav = function () {
-      $mdSidenav('catsSideNav').toggle();
-    };
+      function showToast(){
+        $mdToast.show(
+          $mdToast.simple()
+          .textContent('You click the cat!')
+          .position('bottom')
+          .hideDelay(1000)
+        );
+      }
 
-    self.showPrerenderedDialog = function(ev) {
-    $mdDialog.show({
-      // controller: DialogController,
-      contentElement: '#myDialog',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose: true
+      function select (cat) {
+        self.selected = cat;
+        toggleSideNav();
+      }
+
+      function catClick (cat) {
+        cat.count ++;
+        showToast();
+      }
+
+      function save (newCat) {
+        newCat.id = asignCatId(self.cats);
+        if (newCat.count === null || !newCat.count) {
+          newCat.count = 0;
+          self.cats.push(newCat);
+        }
+        else  {
+          self.cats.push(newCat); 
+        }
+
+        self.clear();
+
+        function asignCatId(catsArray){
+          return asignCatIdAux(getSortedIds(catsArray), 0, 0);
+
+            function asignCatIdAux (array, index, value){
+              return index > array.length - 1 ? value
+                : array[index] !== value ? 
+                  asignCatIdAux (array, index +1, value) :
+                  asignCatIdAux (array, index +1, value + 1);
+
+
+            }
+
+            function getSortedIds (arr) {
+              return arr
+                .map(function(arr){
+                return arr.id;
+                })
+                .sort();
+            }
+        }
+
+      }
+
+      function clear () {
+        self.newCat = {};
+        $mdDialog.hide();
+      }
+
+      function toggleSideNav () {
+        $mdSidenav('catsSideNav').toggle();
+      }
+
+      function showPrerenderedDialog (ev) {
+        $mdDialog.show({
+          // controller: DialogController,
+          contentElement: '#myDialog',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose: true
+        });
+      }
+
+      function deleteCat(id) {
+        var i = self.cats
+          .map(function(arr){
+            return arr.id;
+          })
+          .indexOf(id);
+        self.cats.splice(i,1);
+      }
+
     });
-  };
-
-  });
+})();

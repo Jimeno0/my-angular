@@ -66,10 +66,21 @@
 
         <md-content layout-padding>
           <md-list>
-            <md-list-item ng-repeat="cat in ctrl.cats">
-              <md-button ng-click = "ctrl.select(cat)" layout-fill>
-                  <span >{{cat.name}}</span>
-              </md-button>
+            <md-list-item ng-repeat="cat in ctrl.cats" ng-click = "ctrl.select(cat)">
+              <div flex layout-fill layout="row">
+                <div>
+                  <span >{{cat.name}}, id: {{cat.id}}</span>  
+                </div>
+                <div flex layout="row" layout-align="end">
+                  <md-button aria-label="edit cat" md-no-ink="true" class="icon-button-width">
+                    <md-icon md-svg-src="icons/edit.svg"></md-icon>
+                  </md-button>
+                  <md-button aria-label="delete cat" md-no-ink="true" class="icon-button-width" ng-click="ctrl.deleteCat(cat.id)">
+                    <md-icon md-svg-src="icons/remove.svg"></md-icon>
+                  </md-button>
+                </div>
+              </div>
+              
             </md-list-item>
           </md-list>
           

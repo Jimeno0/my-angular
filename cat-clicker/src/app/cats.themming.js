@@ -3,6 +3,4 @@ angular.module('app')
   $mdThemingProvider.theme('default')
     .primaryPalette('brown')
     .accentPalette('red');
-
-
 });

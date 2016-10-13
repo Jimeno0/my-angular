@@ -1,0 +1,22 @@
+[
+  { "id": 0,
+    "name": "Coco",
+    "src": "assets/images/coco.jpg",
+    "count": 0},
+  { "id": 8,
+    "name": "Sombra",
+    "src": "assets/images/sombra.jpg",
+    "count": 0},
+  { "id": 2,
+    "name": "Frodo",
+    "src": "assets/images/frodo.jpg",
+    "count": 0},
+  { "id": 3,
+    "name": "Scar",
+    "src": "assets/images/scar.jpg",
+    "count": 0},
+  { "id": 4,
+    "name": "Felix",
+    "src": "assets/images/felix.jpg",
+    "count": 0}
+]

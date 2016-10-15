@@ -1,0 +1,22 @@
+.avatar {
+  margin: auto;
+  width: 70%;
+  height: auto;
+}
+
+h1 {
+  margin: 0.2em;
+  font-size: 1.7em;
+}
+
+#addBtn {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+.icon-button-width {
+  min-width: 10px;
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImluZGV4LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxhQUFhO0VBQ2IsV0FBVztFQUNYLGFBQWE7Q0FFZDs7QUFFRDtFQUNFLGNBQWE7RUFDYixpQkFBZ0I7Q0FDakI7O0FBRUQ7RUFDRSxtQkFBbUI7RUFDbkIsV0FBVztFQUNYLFNBQVM7Q0FDVjs7QUFFRDtFQUNFLGdCQUFnQjtDQUNqQiIsImZpbGUiOiJpbmRleC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuYXZhdGFyIHtcbiAgbWFyZ2luOiBhdXRvO1xuICB3aWR0aDogNzAlO1xuICBoZWlnaHQ6IGF1dG87ICBcbiAgICBcbn1cblxuaDEge1xuICBtYXJnaW46MC4yZW07XG4gIGZvbnQtc2l6ZToxLjdlbTtcbn1cblxuI2FkZEJ0bntcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICByaWdodDogNXB4O1xuICB0b3A6IDVweDsgIFxufVxuXG4uaWNvbi1idXR0b24td2lkdGgge1xuICBtaW4td2lkdGg6IDEwcHg7XG59XG4iXX0= */
